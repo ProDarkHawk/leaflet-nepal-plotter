@@ -5,6 +5,7 @@ export enum EControlPositionOptions {
   topright = "topright",
 }
 
-export interface IControlPosition {
+export interface ICustomControl {
+  prepend?: boolean;
   position: EControlPositionOptions;
 }

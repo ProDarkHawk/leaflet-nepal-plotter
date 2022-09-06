@@ -5,6 +5,13 @@ import { useMap } from "react-leaflet";
 export default function useGeolocation() {
   const [locating, setLocating] = useState<boolean>(false);
   const [position, setPosition] = useState<LatLngTuple>(initialMapState.center);
+  const [geoLocationGranted, setGeoLocationGranted] = useState(false);
+
+  navigator.permissions.query({ name: "geolocation" }).then((result) => {
+    if (result.state === "granted") {
+      setGeoLocationGranted(true);
+    }
+  });
 
   const map = useMap();
   const locate = (): void => {
@@ -24,5 +31,5 @@ export default function useGeolocation() {
     map.stopLocate();
   };
 
-  return { position, locate, locating, stopLocate };
+  return { position, locate, locating, stopLocate, geoLocationGranted };
 }

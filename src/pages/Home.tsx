@@ -15,11 +15,7 @@ export default function Home() {
           position: "absolute",
           top: 0,
           left: 0,
-          width: {
-            mobile: "100%",
-            tablet: showLayerOptions ? "40%" : 0,
-          },
-          zIndex: 999,
+          zIndex: 999999,
         }}
       >
         <Tooltip title="Toggle Layer Options" placement="right">
@@ -43,13 +39,26 @@ export default function Home() {
             />
           </IconButton>
         </Tooltip>
+      </PageContainer>
+      <PageContainer
+        sx={{
+          position: "absolute",
+          top: 50,
+          left: 0,
+          pb: 0,
+          width: {
+            mobile: "100%",
+            tablet: "40%",
+          },
+          zIndex: 99999,
+          transition: "all .7s ease-in-out",
+          transform: showLayerOptions ? "translateX(0)" : "translateX(-1000px)",
+        }}
+      >
         <GridContainer
           sx={{
             mt: 1.5,
-            transition: "all .7s ease-in-out",
-            transform: showLayerOptions
-              ? "translateX(0)"
-              : "translateX(-1000px)",
+            p: 0,
           }}
         >
           <GridItem mobile={12} tablet={12}>

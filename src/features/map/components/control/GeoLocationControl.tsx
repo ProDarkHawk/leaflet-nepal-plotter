@@ -1,14 +1,14 @@
 import { useGeolocation } from "@features/map/hooks";
-import { IControlPosition } from "@features/map/interfaces";
-import { MyLocation } from "@mui/icons-material";
+import { ICustomControl } from "@features/map/interfaces";
+import { LocationSearching, MyLocation } from "@mui/icons-material";
 import { IconButton, Tooltip } from "@mui/material";
 import { MouseEvent } from "react";
 import Control from "react-leaflet-custom-control";
-const GeoLocationControl = ({ position }: IControlPosition) => {
-  const { locate, locating } = useGeolocation();
+const GeoLocationControl = ({ position }: ICustomControl) => {
+  const { locate, locating, geoLocationGranted } = useGeolocation();
   return (
     <Control position={position}>
-      <Tooltip title="Locate Me" placement="top">
+      <Tooltip title="Locate Me" placement="left">
         <IconButton
           size="small"
           className="leaflet-bar"
@@ -24,7 +24,11 @@ const GeoLocationControl = ({ position }: IControlPosition) => {
             },
           }}
         >
-          <MyLocation className={locating ? "rotating" : ""} />
+          {geoLocationGranted ? (
+            <MyLocation />
+          ) : (
+            <LocationSearching className={locating ? "rotating" : ""} />
+          )}
         </IconButton>
       </Tooltip>
     </Control>

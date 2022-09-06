@@ -11,6 +11,11 @@ const CountCardList = [
     total: 0,
     icon: <Layers />,
   },
+  {
+    text: "Plotted Layers",
+    total: 0,
+    icon: <Layers />,
+  },
 ];
 export default function CountCards() {
   return (

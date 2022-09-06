@@ -22,7 +22,7 @@ export default function AvailableLayers() {
         <NormalText
           bold
           sx={{
-            color: "grey.300",
+            color: "white",
             maxWidth: "max-content",
             p: 1,
             backgroundColor: "primary.main",

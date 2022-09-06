@@ -1,24 +1,27 @@
 import { useFullscreen } from "@features/map/hooks";
-import { IControlPosition } from "@features/map/interfaces";
+import { ICustomControl } from "@features/map/interfaces";
 import { CloseFullscreen, Fullscreen } from "@mui/icons-material";
 import { IconButton, Tooltip } from "@mui/material";
+import { MouseEvent } from "react";
 import Control from "react-leaflet-custom-control";
-
-const FullscreenControl = ({ position }: IControlPosition) => {
+const FullscreenControl = ({ prepend, position }: ICustomControl) => {
   const { isFullscreen, toggleFullscreen } = useFullscreen(
     "leaflet-plotter-container"
   );
   return (
-    <Control position={position}>
+    <Control prepend={prepend} position={position}>
       <Tooltip
         title={isFullscreen ? "Exit Fullscreen" : "Enter Fullscreen"}
-        placement="top"
+        placement="left"
       >
         <IconButton
           disableRipple
           size="small"
           className="leaflet-bar"
-          onClick={toggleFullscreen}
+          onClick={(e: MouseEvent<HTMLButtonElement>) => {
+            e.stopPropagation();
+            toggleFullscreen();
+          }}
           sx={{
             borderRadius: 1,
             color: "primary.main",

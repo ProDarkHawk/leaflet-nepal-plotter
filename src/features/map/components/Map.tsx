@@ -25,9 +25,13 @@ export default function Map() {
       <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
       <ZoomControl position="bottomright" />
       <ScaleControl />
-      <FullscreenControl position={EControlPositionOptions.topright} />
-      <GeoLocationMarker />
+      <FullscreenControl
+        prepend
+        position={EControlPositionOptions.bottomright}
+      />
       <GeoLocationControl position={EControlPositionOptions.bottomright} />
+
+      <GeoLocationMarker />
     </MapContainer>
   );
 }

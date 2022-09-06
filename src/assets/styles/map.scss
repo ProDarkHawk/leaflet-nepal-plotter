@@ -21,3 +21,7 @@
 .rotating {
     -webkit-animation: rotating 2s linear infinite;
 }
+
+.leaflet-control-zoom a>span {
+    color: #0C4E6E !important;
+}
