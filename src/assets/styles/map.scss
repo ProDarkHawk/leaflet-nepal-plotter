@@ -1,0 +1,23 @@
+.map-container {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+}
+
+.custom-marker {
+    color: #0C4E6E;
+}
+
+@keyframes rotating {
+    from {
+        -webkit-transform: rotate(0deg);
+    }
+
+    to {
+        -webkit-transform: rotate(360deg);
+    }
+}
+
+.rotating {
+    -webkit-animation: rotating 2s linear infinite;
+}

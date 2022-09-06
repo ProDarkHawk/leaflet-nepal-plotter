@@ -1,0 +1,9 @@
+export const BODY_COLOR = "#F0FAF8";
+export const PRIMARY_MAIN_COLOR = "#0C4E6E";
+export const SECONDARY_MAIN_COLOR = "#F8931E";
+export const SUCCESS_MAIN_COLOR = "#2e7d32";
+export const ERROR_MAIN_COLOR = "#ce1126";
+export const WARNING_MAIN_COLOR = "#ed6c02";
+export const DARK_MAIN_COLOR = "#000000";
+export const LIGHT_MAIN_COLOR = "#fff";
+export const GREY_MAIN_COLOR = "#686b78";
