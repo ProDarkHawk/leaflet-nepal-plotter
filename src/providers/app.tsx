@@ -3,23 +3,12 @@ import { ErrorFallback } from "@features/error/components";
 import { IWrapper } from "@interfaces/wrapper";
 import { LayersProvider } from "@providers/layers";
 import { MapContextProvider } from "@providers/map";
+import { ReactQueryProvider } from "@providers/react-query";
 import { CustomThemeProvider } from "@providers/theme";
 import { Suspense } from "react";
 import { ErrorBoundary } from "react-error-boundary";
-import { QueryClient, QueryClientProvider } from "react-query";
-import { BrowserRouter as Router } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-
-const queryClient = new QueryClient({
-  defaultOptions: {
-    queries: {
-      useErrorBoundary: true,
-      retry: false,
-      refetchOnWindowFocus: false,
-    },
-  },
-});
 
 export const AppProvider = ({ children }: IWrapper) => {
   return (
@@ -27,13 +16,11 @@ export const AppProvider = ({ children }: IWrapper) => {
       <ErrorBoundary FallbackComponent={ErrorFallback}>
         <CustomThemeProvider>
           <ToastContainer />
-          <QueryClientProvider client={queryClient}>
+          <ReactQueryProvider>
             <MapContextProvider>
-              <LayersProvider>
-                <Router>{children}</Router>
-              </LayersProvider>
+              <LayersProvider>{children}</LayersProvider>
             </MapContextProvider>
-          </QueryClientProvider>
+          </ReactQueryProvider>
         </CustomThemeProvider>
       </ErrorBoundary>
     </Suspense>

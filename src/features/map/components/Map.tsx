@@ -7,6 +7,7 @@ import { GeoLocationMarker } from "@features/map/components/markers";
 import { useLayersContext, useMapContext } from "@features/map/hooks";
 import { EControlPositionOptions } from "@features/map/interfaces";
 import { PRIMARY_MAIN_COLOR } from "@utils/constants";
+
 import {
   GeoJSON,
   LayersControl,
@@ -15,6 +16,7 @@ import {
   TileLayer,
   ZoomControl,
 } from "react-leaflet";
+
 export default function Map() {
   const { center, zoom } = useMapContext();
   const { plottedLayers } = useLayersContext();

@@ -1,7 +1,6 @@
 import { PageContainer } from "@components/container";
 import { GridContainer, GridItem } from "@components/grid";
-import { AvailableLayers, CountCards } from "@features/home/components";
-import { Map } from "@features/map/components";
+import { AvailableLayers, CountCards, Map } from "@features/map/components";
 import { DoubleArrow as DoubleArrowIcon } from "@mui/icons-material";
 import { IconButton, Tooltip } from "@mui/material";
 import { useState } from "react";

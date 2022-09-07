@@ -18,15 +18,11 @@
     "baseUrl": "./src",
     "paths": {
       "@assets/*": ["assets/*"],
-      "@hooks/*": ["hooks/*"],
       "@components/*": ["components/*"],
-      "@configs/*": ["configs/*"],
       "@features/*": ["features/*"],
       "@interfaces/*": ["interfaces/*"],
       "@layouts/*": ["layouts/*"],
-      "@pages/*": ["pages/*"],
       "@providers/*": ["providers/*"],
-      "@routes/*": ["routes/*"],
       "@utils/*": ["utils/*"],
       "@lib/*": ["lib/*"]
     }

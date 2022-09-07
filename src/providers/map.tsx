@@ -1,8 +1,11 @@
-import { initialMapState } from "@features/map/data";
 import { IWrapper } from "@interfaces/wrapper";
 import { LatLngTuple } from "leaflet";
 import { createContext, useState } from "react";
 
+export const initialMapState = {
+  center: [27.712, 85.312] as LatLngTuple,
+  zoom: 7,
+};
 interface MapContextProps {
   center: LatLngTuple;
   zoom: number;

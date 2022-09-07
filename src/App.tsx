@@ -1,10 +1,15 @@
+import { DefaultLayout } from "@layouts/index";
 import { AppProvider } from "@providers/app";
-import { AppRoutes } from "@routes/AppRoutes";
+import { lazy } from "react";
+
+const Home = lazy(() => import("@features/map/components/Home"));
 
 function App() {
   return (
     <AppProvider>
-      <AppRoutes />
+      <DefaultLayout>
+        <Home />
+      </DefaultLayout>
     </AppProvider>
   );
 }

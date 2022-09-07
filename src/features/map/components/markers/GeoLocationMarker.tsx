@@ -1,9 +1,6 @@
 import { useGeolocation } from "@features/map/hooks";
-import { RadioButtonChecked } from "@mui/icons-material";
-import { divIcon } from "leaflet";
 import { useEffect } from "react";
-import { renderToStaticMarkup } from "react-dom/server";
-import { Marker, Popup } from "react-leaflet";
+import { Circle, FeatureGroup, Marker, Popup } from "react-leaflet";
 const GeoLocationMarker = () => {
   const { position, locate, stopLocate } = useGeolocation();
   useEffect(() => {
@@ -14,15 +11,19 @@ const GeoLocationMarker = () => {
     // eslint-disable-next-line
   }, []);
 
-  const iconMarkup = renderToStaticMarkup(<RadioButtonChecked />);
-  const markerIcon = divIcon({
-    html: iconMarkup,
-    className: "custom-marker",
-  });
   return (
-    <Marker position={position} icon={markerIcon}>
-      <Popup>You are here at [{position.toString()}]</Popup>
-    </Marker>
+    <FeatureGroup>
+      <Marker position={position}>
+        <Popup>You are here at [{position.toString()}]</Popup>
+      </Marker>
+      <Circle
+        radius={5000}
+        center={position}
+        pathOptions={{
+          stroke: false,
+        }}
+      />
+    </FeatureGroup>
   );
 };
 
