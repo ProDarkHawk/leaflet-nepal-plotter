@@ -75,6 +75,9 @@ const UIButton = ({
           backgroundColor: link ? "unset" : "",
           textDecoration: "",
         },
+        ":disabled": {
+          cursor: "not-allowed",
+        },
         ...sx,
       }}
       type={type}

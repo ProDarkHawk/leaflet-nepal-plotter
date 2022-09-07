@@ -1,3 +1,5 @@
+@import './_variable.scss';
+
 .map-container {
     position: relative;
     width: 100%;
@@ -5,7 +7,7 @@
 }
 
 .custom-marker {
-    color: #0C4E6E;
+    color: $MARKER_COLOR;
 }
 
 @keyframes rotating {
@@ -23,5 +25,5 @@
 }
 
 .leaflet-control-zoom a>span {
-    color: #0C4E6E !important;
+    color: $PRIMARY_MAIN_COLOR  !important;
 }
