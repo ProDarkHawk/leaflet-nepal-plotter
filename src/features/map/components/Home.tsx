@@ -1,6 +1,5 @@
 import { PageContainer } from "@components/container";
-import { GridContainer, GridItem } from "@components/grid";
-import { AvailableLayers, CountCards, Map } from "@features/map/components";
+import { CountCards, Map } from "@features/map/components";
 import { DoubleArrow as DoubleArrowIcon } from "@mui/icons-material";
 import { IconButton, Tooltip } from "@mui/material";
 import { useState } from "react";
@@ -47,24 +46,14 @@ export default function Home() {
           pb: 0,
           width: {
             mobile: "100%",
-            tablet: "40%",
+            tablet: "30%",
           },
           zIndex: 9998,
           transition: "all .7s ease-in-out",
           transform: showLayerOptions ? "translateX(0)" : "translateX(-1000px)",
         }}
       >
-        <GridContainer
-          sx={{
-            mt: 1.5,
-            p: 0,
-          }}
-        >
-          <GridItem mobile={12} tablet={12}>
-            <CountCards />
-            <AvailableLayers />
-          </GridItem>
-        </GridContainer>
+        <CountCards />
       </PageContainer>
     </>
   );
