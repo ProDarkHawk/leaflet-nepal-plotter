@@ -1,9 +1,11 @@
-import { intitalMapCenter } from "@features/map/data";
+import { useAppSelector } from "@hooks/store";
 import { useState } from "react";
 import { useMap } from "react-leaflet";
 export default function useGeolocation() {
+  const { center } = useAppSelector((state) => state.map);
+
   const [locating, setLocating] = useState<boolean>(false);
-  const [position, setPosition] = useState(intitalMapCenter);
+  const [position, setPosition] = useState(center);
   const [geoLocationGranted, setGeoLocationGranted] = useState(false);
 
   navigator.permissions.query({ name: "geolocation" }).then((result) => {

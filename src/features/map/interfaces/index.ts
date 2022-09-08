@@ -14,6 +14,9 @@ export interface ICustomControl {
 
 export interface LayerObject {
   name: string;
+  color?: string;
+  fill?: boolean;
+  fillColor?: string;
   type: GeoJSON["type"];
   features: GeoJsonObject[];
 }

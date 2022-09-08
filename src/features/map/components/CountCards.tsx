@@ -2,10 +2,12 @@ import { FlexBox } from "@components/box";
 import { GridContainer, GridItem } from "@components/grid";
 import { NormalText } from "@components/text";
 import { UIButton } from "@components/ui";
+import { useAppSelector } from "@hooks/store";
 import { Layers } from "@mui/icons-material";
 import { Card } from "@mui/material";
 
 export default function CountCards() {
+  const { plottedLayers } = useAppSelector((state) => state.map);
   const CountCardList = [
     {
       text: "Layers",
@@ -14,7 +16,7 @@ export default function CountCards() {
     },
     {
       text: "Plotted Layers",
-      total: 0,
+      total: plottedLayers.length,
       icon: <Layers />,
     },
   ];

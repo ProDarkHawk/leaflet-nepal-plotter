@@ -1,6 +1,9 @@
 import { Backdrop, Button, Typography } from "@mui/material";
+import { useQueryErrorResetBoundary } from "react-query";
 
 const ErrorFallback = () => {
+  const { reset } = useQueryErrorResetBoundary();
+
   return (
     <Backdrop
       sx={{
@@ -17,7 +20,10 @@ const ErrorFallback = () => {
       <Button
         variant="contained"
         color="dark"
-        onClick={() => window.location.assign(window.location.origin)}
+        onClick={() => {
+          reset();
+          window.location.assign(window.location.origin);
+        }}
       >
         Refresh
       </Button>

@@ -3,13 +3,20 @@ import { FallbackLoader } from "@components/loader";
 import { ErrorFallback } from "@features/error/components";
 import { IWrapper } from "@interfaces/wrapper";
 import { CssBaseline, ThemeProvider } from "@mui/material";
+import { store } from "@redux/store";
 import { Suspense } from "react";
 import { ErrorBoundary } from "react-error-boundary";
-import { QueryClient, QueryClientProvider } from "react-query";
+import { QueryCache, QueryClient, QueryClientProvider } from "react-query";
+import { Provider } from "react-redux";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 const queryClient = new QueryClient({
+  queryCache: new QueryCache({
+    onError(error, query) {
+      console.log(error);
+    },
+  }),
   defaultOptions: {
     queries: {
       useErrorBoundary: true,
@@ -25,9 +32,11 @@ export const AppProvider = ({ children }: IWrapper) => {
         <ThemeProvider theme={CustomTheme}>
           <CssBaseline />
           <ToastContainer />
-          <QueryClientProvider client={queryClient}>
-            {children}
-          </QueryClientProvider>
+          <Provider store={store}>
+            <QueryClientProvider client={queryClient}>
+              {children}
+            </QueryClientProvider>
+          </Provider>
         </ThemeProvider>
       </ErrorBoundary>
     </Suspense>

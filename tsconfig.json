@@ -20,6 +20,7 @@
       "@assets/*": ["assets/*"],
       "@components/*": ["components/*"],
       "@features/*": ["features/*"],
+      "@hooks/*": ["hooks/*"],
       "@interfaces/*": ["interfaces/*"],
       "@layouts/*": ["layouts/*"],
       "@lib/*": ["lib/*"],

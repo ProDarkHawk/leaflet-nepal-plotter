@@ -1,14 +1,41 @@
 import { NormalText } from "@components/text";
+import { useProvinceGeoJson } from "@features/map/api/getProvinceGeoJson";
 import { useProvinces } from "@features/map/api/getProvinces";
-import { useProvincesGeoJson } from "@features/map/api/getProvincesGeoJson";
 import { LayerObject, ProvinceObject } from "@features/map/interfaces";
-import { useMemo } from "react";
+import { useAppDispatch, useAppSelector } from "@hooks/store";
+import { setPlottedLayers } from "@redux/actions";
+import { useEffect, useState } from "react";
 import ReactSelect, { MultiValue } from "react-select";
-let provinces: MultiValue<ProvinceObject> = [];
-let provinceLayers: LayerObject[] = [];
-
+let selectedProvinces: MultiValue<ProvinceObject> = [];
+const colors = [
+  "#967E76",
+  "#D7C0AE",
+  "#EEE3CB",
+  "#B7C4CF",
+  "#CDF0EA",
+  "#ECC5FB",
+  "#E80F88",
+];
+const provinceNames = [
+  "Province 1",
+  "Province 2",
+  "Bagmati",
+  "Gandaki",
+  "Lumbini",
+  "Karnali",
+  "Sudurpashchim",
+];
 export default function ProvinceSelect() {
+  const [defaultProvinceId, setDefaultProvinceId] = useState(0);
   const { data } = useProvinces();
+  const {
+    data: provinceData,
+    refetch,
+    isFetched,
+  } = useProvinceGeoJson(defaultProvinceId);
+  const { plottedLayers } = useAppSelector((state) => state.map);
+
+  const dispatch = useAppDispatch();
   const provinceList = data?.provinces.map((province) => {
     return {
       ...province,
@@ -17,26 +44,31 @@ export default function ProvinceSelect() {
     };
   });
 
-  const { results, refetchAll } = useProvincesGeoJson(provinces);
+  useEffect(() => {
+    if (defaultProvinceId) {
+      refetch();
+      if (isFetched && provinceData && selectedProvinces.length > 0) {
+        const newProvinceLayer = {
+          name: provinceNames[defaultProvinceId - 1],
+          color: colors[defaultProvinceId],
+          fill: true,
+          fillColor: colors[defaultProvinceId],
+          type: "FeatureCollection",
+          features: [provinceData],
+        } as LayerObject;
 
-  useMemo(() => {
-    results.map((result, index) => {
-      const newLayer = {
-        name: provinces[index].name,
-        type: "FeatureCollection",
-        features: [result.data],
-      } as LayerObject;
+        const newLayers = [...plottedLayers, newProvinceLayer];
 
-      provinceLayers.push(newLayer);
-      return result;
+        dispatch(setPlottedLayers(newLayers));
+      }
+    }
+  }, [provinceData, defaultProvinceId]);
+
+  const handleProvinceChange = (provinces: MultiValue<ProvinceObject>) => {
+    selectedProvinces = provinces;
+    provinces.forEach((province) => {
+      setDefaultProvinceId(province.id);
     });
-  }, [results]);
-
-  const handleProvinceChange = (
-    selectedProvinces: MultiValue<ProvinceObject>
-  ) => {
-    provinces = selectedProvinces;
-    refetchAll();
   };
 
   return (
