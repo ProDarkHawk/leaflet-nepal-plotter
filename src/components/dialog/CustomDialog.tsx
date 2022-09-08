@@ -39,7 +39,7 @@ const CustomDialog = ({
       open={open}
       onClose={handleClose}
       fullWidth
-      maxWidth={"tablet"}
+      maxWidth={"lmobile"}
       fullScreen={responsive && fullScreen}
       TransitionComponent={Slide}
       transitionDuration={{

@@ -1,27 +1,9 @@
 import { FlexBox } from "@components/box";
 import { GridContainer, GridItem } from "@components/grid";
 import { NormalText } from "@components/text";
-import { UIButton } from "@components/ui";
-import { useProvinces } from "@features/map/api/getProvinces";
-import { useLayersContext } from "@features/map/hooks";
-import { Card, CardActions } from "@mui/material";
-import ReactSelect from "react-select";
+import { LayersControlButtons, ProvinceSelect } from "@features/map/components";
+import { Card } from "@mui/material";
 export default function AvailableLayers() {
-  const {
-    selectedLayers,
-    resetSelectedLayers,
-    setPlottedLayers,
-    resetPlottedLayers,
-  } = useLayersContext();
-
-  const { data } = useProvinces();
-  const provinces = data?.provinces.map((province) => {
-    return {
-      ...province,
-      label: province.name,
-      value: province.id,
-    };
-  });
   return (
     <Card
       elevation={3}
@@ -47,52 +29,11 @@ export default function AvailableLayers() {
         </NormalText>
       </FlexBox>
       <GridContainer p={2}>
-        <GridItem p={1}>
-          <NormalText bold>Provinces</NormalText>
-          <ReactSelect
-            className="react-select"
-            classNamePrefix={"select"}
-            isMulti
-            options={provinces}
-            name="provinces"
-          />
+        <GridItem tablet={12} laptop={6} p={1}>
+          <ProvinceSelect />
         </GridItem>
       </GridContainer>
-      <CardActions>
-        <FlexBox
-          justifyContent={"end"}
-          sx={{
-            p: 2,
-            width: "100%",
-          }}
-        >
-          <UIButton
-            onClick={() => {
-              setPlottedLayers();
-            }}
-            disabled={!selectedLayers.length}
-            variant="contained"
-          >
-            Add To Map
-          </UIButton>
-          <UIButton
-            sx={{
-              ml: 1,
-            }}
-            color="error"
-            onClick={() => {
-              if (selectedLayers.length) {
-                resetSelectedLayers();
-                resetPlottedLayers();
-              }
-            }}
-            disabled={!selectedLayers.length}
-            variant="contained"
-          >
-            Reset Map
-          </UIButton>
-        </FlexBox>
-      </CardActions>
+      <LayersControlButtons />
     </Card>
   );
 }

@@ -4,21 +4,17 @@ import { NormalText } from "@components/text";
 import { UIButton } from "@components/ui";
 import { Layers } from "@mui/icons-material";
 import { Card } from "@mui/material";
-import { LayersContext } from "@providers/layers";
-import { useContext } from "react";
 
 export default function CountCards() {
-  const { layers, plottedLayers } = useContext(LayersContext);
-
   const CountCardList = [
     {
       text: "Layers",
-      total: layers.length,
+      total: 0,
       icon: <Layers />,
     },
     {
       text: "Plotted Layers",
-      total: plottedLayers.length,
+      total: 0,
       icon: <Layers />,
     },
   ];

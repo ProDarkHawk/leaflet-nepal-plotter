@@ -22,9 +22,10 @@
       "@features/*": ["features/*"],
       "@interfaces/*": ["interfaces/*"],
       "@layouts/*": ["layouts/*"],
+      "@lib/*": ["lib/*"],
       "@providers/*": ["providers/*"],
-      "@utils/*": ["utils/*"],
-      "@lib/*": ["lib/*"]
+      "@redux/*": ["redux/*"],
+      "@utils/*": ["utils/*"]
     }
   },
   "include": ["src/**/*"],

@@ -14,7 +14,7 @@ export default function Home() {
           position: "absolute",
           top: 0,
           left: 0,
-          zIndex: 999999,
+          zIndex: 9999,
         }}
       >
         <Tooltip title="Toggle Layer Options" placement="right">
@@ -49,7 +49,7 @@ export default function Home() {
             mobile: "100%",
             tablet: "40%",
           },
-          zIndex: 99999,
+          zIndex: 9998,
           transition: "all .7s ease-in-out",
           transform: showLayerOptions ? "translateX(0)" : "translateX(-1000px)",
         }}

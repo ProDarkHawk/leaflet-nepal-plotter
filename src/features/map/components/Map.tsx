@@ -4,12 +4,10 @@ import {
   GeoLocationControl,
 } from "@features/map/components/control";
 import { GeoLocationMarker } from "@features/map/components/markers";
-import { useLayersContext, useMapContext } from "@features/map/hooks";
+import { initialMapZoom, intitalMapCenter } from "@features/map/data";
 import { EControlPositionOptions } from "@features/map/interfaces";
-import { PRIMARY_MAIN_COLOR } from "@utils/constants";
 
 import {
-  GeoJSON,
   LayersControl,
   MapContainer,
   ScaleControl,
@@ -18,23 +16,20 @@ import {
 } from "react-leaflet";
 
 export default function Map() {
-  const { center, zoom } = useMapContext();
-  const { plottedLayers } = useLayersContext();
-
   return (
     <MapContainer
       attributionControl={false}
       zoomControl={false}
       className="map-container"
-      center={center}
-      zoom={zoom}
+      center={intitalMapCenter}
+      zoom={initialMapZoom}
     >
       <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
       <LayersControl position="topright">
         <LayersControl.Overlay checked name="Current Location">
           <GeoLocationMarker />
         </LayersControl.Overlay>
-        {plottedLayers.map((layer, index) => (
+        {/* {plottedLayers.map((layer, index) => (
           <LayersControl.Overlay key={index} checked name={layer.name}>
             <GeoJSON
               style={{
@@ -45,7 +40,7 @@ export default function Map() {
               data={layer}
             />
           </LayersControl.Overlay>
-        ))}
+        ))} */}
       </LayersControl>
       <ZoomControl position="bottomright" />
       <ScaleControl />

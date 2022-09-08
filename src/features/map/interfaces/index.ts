@@ -21,5 +21,7 @@ export interface LayerObject {
 export interface ProvinceObject {
   id: number;
   name: string;
+  label?: string;
+  value?: number;
   capital: string;
 }
